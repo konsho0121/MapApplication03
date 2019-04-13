@@ -8,8 +8,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -52,16 +54,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //カメラの位置とズーム設定
         LatLng center = new LatLng(10.582792, -162.405480);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center,2));
-        //線を引く
-        PolylineOptions line = new PolylineOptions()
-                //色、太さ、測地戦
-                .color(Color.RED)
-                .width(10)
-                .geodesic(true);
-        line.add(Hokkaido);
-        line.add(CathedralRock);
+//        //線を引く
+//        PolylineOptions line = new PolylineOptions()
+//                //色、太さ、測地戦
+//                .color(Color.RED)
+//                .width(10)
+//                .geodesic(true);
+//        line.add(Hokkaido);
+//        line.add(CathedralRock);
+//
+//        mMap.addPolyline(line);
 
-        mMap.addPolyline(line);
+        //３地点を結ぶ半透明を描く
+        PolygonOptions options = new PolygonOptions()
+                .geodesic(true);
+        options.add(sydney,Hokkaido,CathedralRock);
+
+        //線色
+        options.strokeColor(Color.argb(0,00,20,70));
+        //線幅
+        options.strokeWidth(5);
+        //塗り色
+        options.fillColor(Color.argb(100,20,70,50));
+        mMap.addPolygon(options);
+
+
 
     }
 }
