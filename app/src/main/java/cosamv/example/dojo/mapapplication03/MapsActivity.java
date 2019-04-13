@@ -42,12 +42,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         //日本のどこかに緯度経度を設定して、そこにマーカーを設置
-        LatLng USJ = new LatLng(34.665433, 135.432392);
-        mMap.addMarker(new MarkerOptions().position(USJ).title("USJ"));
+        LatLng Hokkaido = new LatLng(43.793646, 146.744130);
+        mMap.addMarker(new MarkerOptions().position(Hokkaido).title("色丹島"));
         //北米のどこかの緯度経度を設定して、そこにマーカーを設置
         LatLng CathedralRock = new LatLng(34.819977, -111.793061);
         mMap.addMarker(new MarkerOptions().position(CathedralRock).title("CathedralRock"));
         //シドニーにカメラを移動
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng center = new LatLng(10.582792, -162.405480);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center,2));
     }
 }
