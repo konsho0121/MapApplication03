@@ -9,6 +9,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
@@ -65,18 +66,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //
 //        mMap.addPolyline(line);
 
-        //３地点を結ぶ半透明を描く
-        PolygonOptions options = new PolygonOptions()
-                .geodesic(true);
-        options.add(sydney,Hokkaido,CathedralRock);
+//        //３地点を結ぶ半透明を描く
+//        PolygonOptions options = new PolygonOptions()
+//                .geodesic(true);
+//        options.add(sydney,Hokkaido,CathedralRock);
+//
+//        //線色
+//        options.strokeColor(Color.argb(0,00,20,70));
+//        //線幅
+//        options.strokeWidth(5);
+//        //塗り色
+//        options.fillColor(Color.argb(100,20,70,50));
+//        mMap.addPolygon(options);
 
-        //線色
-        options.strokeColor(Color.argb(0,00,20,70));
-        //線幅
-        options.strokeWidth(5);
-        //塗り色
-        options.fillColor(Color.argb(100,20,70,50));
-        mMap.addPolygon(options);
+        //３地点を中心とする半透明の円を描く(３つの円が重なるように大きさを調整)
+
+        CircleOptions circle = new CircleOptions();
+        circle.center(sydney);
+        circle.radius(10000);
+
+
+        
+        mMap.addCircle(circle);
+
+
+
 
 
 
