@@ -1,5 +1,6 @@
 package cosamv.example.dojo.mapapplication03;
 
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -47,8 +49,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //北米のどこかの緯度経度を設定して、そこにマーカーを設置
         LatLng CathedralRock = new LatLng(34.819977, -111.793061);
         mMap.addMarker(new MarkerOptions().position(CathedralRock).title("CathedralRock"));
-        //シドニーにカメラを移動
+        //カメラの位置とズーム設定
         LatLng center = new LatLng(10.582792, -162.405480);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center,2));
+        //線を引く
+        PolylineOptions line = new PolylineOptions()
+                //色、太さ、測地戦
+                .color(Color.RED)
+                .width(10)
+                .geodesic(true);
+        line.add(Hokkaido);
+        line.add(CathedralRock);
+
+        mMap.addPolyline(line);
+
     }
 }
